@@ -1,30 +1,58 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  
   <PropertyGroup>
-    <TargetFramework>net47</TargetFramework>
-    <ImplicitUsings>disable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CatastroUrbano</RootNamespace>
+    <AssemblyName>CatastroUrbano</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
     <LangVersion>7.3</LangVersion>
     
     <!-- Información del ensamblado -->
-    <AssemblyName>CatastroUrbano</AssemblyName>
-    <RootNamespace>CatastroUrbano</RootNamespace>
     <Version>1.0.0</Version>
     <Authors>Sistema Catastral Institucional Peruano</Authors>
     <Description>Plugin CAD para categorización catastral urbana según normativa RM 277-2025-VIVIENDA</Description>
     
     <!-- Configuración de salida -->
-    <OutputType>Library</OutputType>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
     
     <!-- Compatible con Visual Studio 2019 -->
     <VisualStudioVersion>16.0</VisualStudioVersion>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <!-- Referencias a AutoCAD 2021 .NET API -->
   <ItemGroup>
-    <!-- Referencias a AutoCAD 2021 .NET API -->
-    <!-- Nota: Ajustar las rutas si AutoCAD está instalado en otra ubicación -->
     <Reference Include="AcMgd">
       <HintPath>C:\Program Files\Autodesk\AutoCAD 2021\AcMgd.dll</HintPath>
       <Private>false</Private>
@@ -39,38 +67,19 @@
     </Reference>
   </ItemGroup>
 
-  <ItemGroup Condition="'$(UseZwcad)' == 'true'">
-    <!-- Referencias a ZWCAD 2021 .NET API (alternativa) -->
-    <!-- Para usar ZWCAD, compilar con: dotnet build -p:UseZwcad=true -->
-    <!-- Descomentar y ajustar rutas según la instalación de ZWCAD -->
-    <!--
-    <Reference Include="ZwSoft.AutoCAD.Runtime">
-      <HintPath>C:\Program Files\ZWSOFT\ZWCAD 2021\ZwSoft.AutoCAD.Runtime.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="ZwSoft.AutoCAD.DatabaseServices">
-      <HintPath>C:\Program Files\ZWSOFT\ZWCAD 2021\ZwSoft.AutoCAD.DatabaseServices.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="ZwSoft.AutoCAD.ApplicationServices">
-      <HintPath>C:\Program Files\ZWSOFT\ZWCAD 2021\ZwSoft.AutoCAD.ApplicationServices.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    -->
-  </ItemGroup>
-
+  <!-- Referencias estándar de .NET Framework 4.8 -->
   <ItemGroup>
-    <!-- Referencias estándar de .NET Framework 4.7 -->
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
 
+  <!-- Archivos fuente organizados por carpetas y namespaces -->
   <ItemGroup>
-    <!-- Archivos fuente organizados por carpetas y namespaces -->
     <!-- Properties (AssemblyInfo) -->
     <Compile Include="Properties\AssemblyInfo.cs" />
     
@@ -113,17 +122,29 @@
     <Compile Include="src\Infrastructure\ErrorHandler.cs" />
     
     <!-- UI (WinForms) -->
-    <Compile Include="UI\MainForm.cs" />
+    <Compile Include="UI\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\UIInitializer.cs" />
-    
-    <!-- Resources -->
-    <EmbeddedResource Include="UI\MainForm.resx" />
   </ItemGroup>
 
+  <!-- Recursos embebidos -->
+  <ItemGroup>
+    <EmbeddedResource Include="UI\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  
+  <!-- Eventos post-build (opcional) -->
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <!-- Copiar el DLL a la carpeta de plugins de AutoCAD (opcional) -->
     <!-- Ejemplo: copiar a ApplicationPlugins para carga automática -->
-    <!-- <Exec Command="copy &quot;$(TargetPath)&quot; &quot;%APPDATA%\Autodesk\ApplicationPlugins\CatastroUrbano.bundle\Contents\&quot;" /> -->
+    <!-- <Exec Command="copy &quot;$(TargetPath)&quot; &quot;%APPDATA%\\Autodesk\\ApplicationPlugins\\CatastroUrbano.bundle\\Contents\\&quot;" /> -->
   </Target>
 
 </Project>

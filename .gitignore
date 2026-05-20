@@ -1,57 +1,38 @@
 ```
-# Build results
+# Build artifacts
 bin/
 obj/
-out/
-
-# User-specific files
-.vs/
-.userprefs
+*.dll
+*.exe
+*.pdb
+*.config
 *.user
-*.userosscache
 *.suo
-*.userprefs
-
-# Build results
-[Dd]ebug/
-[Dd]ebugPublic/
-[Rr]elease/
-[Rr]eleases/
-x64/
-x86/
-build/
-bld/
-[Bb]in/
-[Oo]bj/
-
-# Visual Studio cache/options
-.vs/
-*.VC.db
-*.VC.VC.opendb
-
-# ReSharper
-_ReSharper*/
-*.[Rr]e[Ss]harper
- assemblies/
-
-# Code coverage
-coverage/
-*.coverage
-*.dotCover
+*.csproj.user
+*.userosscache
+*.sln.docstates
 
 # Dependencies
-node_modules/
 packages/
+node_modules/
+.nuget/
+.npm/
+
+# Logs
+*.log
 
 # Environment
 .env
 .env.local
 *.env.*
 
-# Logs
-*.log
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
 
-# OS generated files
+# OS
 .DS_Store
 Thumbs.db
 ```
