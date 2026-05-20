@@ -1,38 +1,24 @@
 ```
 # Build artifacts
-bin/
-obj/
-*.dll
+*.obj
 *.exe
+*.dll
 *.pdb
-*.config
-*.user
-*.suo
-*.csproj.user
-*.userosscache
-*.sln.docstates
+*.userprefs
+*.cache
+*.log
 
 # Dependencies
 packages/
-node_modules/
-.nuget/
-.npm/
-
-# Logs
-*.log
-
-# Environment
-.env
-.env.local
-*.env.*
+bin/
+obj/
 
 # Editors
-.vscode/
-.idea/
-*.swp
-*.swo
+.vs/
+.ReSharper*/
+_UpgradeReport_Files/
 
 # OS
-.DS_Store
 Thumbs.db
+.DS_Store
 ```
