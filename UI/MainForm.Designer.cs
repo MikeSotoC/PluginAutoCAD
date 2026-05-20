@@ -30,13 +30,47 @@ namespace CatastroUrbano.UI
         {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 600);
-            this.Text = "Catastro Urbano";
+            this.ClientSize = new System.Drawing.Size(450, 550);
+            this.Text = "Catastro Urbano v1.0";
             
-            // Nota: El diseño visual completo se puede construir arrastrando controles
-            // desde la Toolbox en Visual Studio una vez que este archivo exista.
-            // Aquí se inicializan los componentes básicos para evitar errores de compilación.
+            // Configurar TabControl
+            mainTabControl = new TabControl();
+            mainTabControl.Dock = DockStyle.Fill;
+            mainTabControl.Appearance = TabAppearance.FlatButtons;
+            mainTabControl.ItemSize = new System.Drawing.Size(80, 25);
+            mainTabControl.SizeMode = TabSizeMode.Fixed;
+            
+            // Crear pestañas
+            tabDibujo = new TabPage("Dibujo");
+            tabAnalisis = new TabPage("Análisis");
+            tabClasificacion = new TabPage("Clasificación");
+            tabTablas = new TabPage("Tablas");
+            
+            mainTabControl.Controls.Add(tabDibujo);
+            mainTabControl.Controls.Add(tabAnalisis);
+            mainTabControl.Controls.Add(tabClasificacion);
+            mainTabControl.Controls.Add(tabTablas);
+            
+            // Inicializar componentes de cada pestaña
+            InitDibujoTab();
+            InitAnalisisTab();
+            InitClasificacionTab();
+            InitTablasTab();
+            
+            // Barra de estado
+            statusBar = new StatusStrip();
+            lblEstado = new ToolStripStatusLabel("Listo");
+            progressBar = new ToolStripProgressBar();
+            progressBar.Visible = false;
+            
+            statusBar.Items.Add(lblEstado);
+            statusBar.Items.Add(progressBar);
+            
+            // Agregar controles al formulario
+            this.Controls.Add(mainTabControl);
+            this.Controls.Add(statusBar);
         }
+
 
         #endregion
     }

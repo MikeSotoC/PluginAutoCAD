@@ -7,7 +7,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Autodesk.AutoCAD.Geometry;
+using Autodesk.AutoCAD.DatabaseServices;
+using Color = System.Drawing.Color;
 
 namespace CatastroUrbano.Core.Models
 {
