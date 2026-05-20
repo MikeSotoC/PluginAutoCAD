@@ -1,0 +1,85 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>10.0</LangVersion>
+    
+    <!-- Información del ensamblado -->
+    <AssemblyName>CatastroUrbano</AssemblyName>
+    <RootNamespace>CatastroUrbano</RootNamespace>
+    <Version>1.0.0</Version>
+    <Authors>Sistema Catastral Institucional Peruano</Authors>
+    <Description>Plugin CAD para categorización catastral urbana según normativa RM 277-2025-VIVIENDA</Description>
+    
+    <!-- Configuración de salida -->
+    <OutputType>Library</OutputType>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Referencias a AutoCAD .NET API -->
+    <!-- Ajustar las rutas según la instalación de AutoCAD o usar paquetes NuGet si están disponibles -->
+    <Reference Include="AcMgd">
+      <HintPath>$(ProgramFiles)\Autodesk\AutoCAD 2023\AcMgd.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="AcDbMgd">
+      <HintPath>$(ProgramFiles)\Autodesk\AutoCAD 2023\AcDbMgd.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="AcCoreMgd">
+      <HintPath>$(ProgramFiles)\Autodesk\AutoCAD 2023\AcCoreMgd.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Archivos fuente organizados por carpetas y namespaces -->
+    <!-- Commands -->
+    <Compile Include="src\Commands\UCCommand.cs" />
+    <Compile Include="src\Commands\ObrasCompCommand.cs" />
+    
+    <!-- Models -->
+    <Compile Include="src\Models\CatastroEntityModel.cs" />
+    <Compile Include="src\Models\CategoriaEdificacion.cs" />
+    <Compile Include="src\Models\ObrasComplementarias.cs" />
+    <Compile Include="src\Models\TableRowModel.cs" />
+    
+    <!-- CAD -->
+    <Compile Include="src\CAD\CadTransactionManager.cs" />
+    <Compile Include="src\CAD\CadLineEngine.cs" />
+    <Compile Include="src\CAD\CadTableDrawer.cs" />
+    <Compile Include="src\CAD\MTextEngine.cs" />
+    <Compile Include="src\CAD\LeaderEngine.cs" />
+    <Compile Include="src\CAD\DimensionEngine.cs" />
+    
+    <!-- Analysis -->
+    <Compile Include="src\Analysis\PolylineAnalyzer.cs" />
+    <Compile Include="src\Analysis\AreaCalculator.cs" />
+    
+    <!-- Classification -->
+    <Compile Include="src\Classification\LayerClassifier.cs" />
+    
+    <!-- Geometry -->
+    <Compile Include="src\Geometry\GeometryHelper.cs" />
+    
+    <!-- Styles -->
+    <Compile Include="src\Styles\StyleResolver.cs" />
+    
+    <!-- Table -->
+    <Compile Include="src\Table\DynamicTableEngine.cs" />
+    <Compile Include="src\Table\TableLayoutCalculator.cs" />
+    
+    <!-- Infrastructure -->
+    <Compile Include="src\Infrastructure\ErrorHandler.cs" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <!-- Copiar el DLL a la carpeta de plugins de AutoCAD (opcional) -->
+    <!-- <Exec Command="copy &quot;$(TargetPath)&quot; &quot;%APPDATA%\Autodesk\ApplicationPlugins\CatastroUrbano.bundle\Contents\&quot;" /> -->
+  </Target>
+
+</Project>
