@@ -1,19 +1,17 @@
 ```
 # Build artifacts
-*.obj
-*.exe
-*.dll
-*.so
-*.a
-*.out
 bin/
 obj/
-Debug/
-Release/
+*.dll
+*.exe
+*.pdb
+*.nupkg
+*.snupkg
+packages/
 
 # Dependencies
 packages/
-lib/
+node_modules/
 
 # Logs
 *.log
@@ -26,30 +24,12 @@ lib/
 # Editors
 .vscode/
 .idea/
-*.swp
-*.swo
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
 
-# OS
+# OS generated files
 .DS_Store
 Thumbs.db
-
-# Coverage
-coverage/
-htmlcov/
-.coverage
-
-# Python specific
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-*.so
-.Python
-*.egg-info/
-.eggs/
-.venv/
-venv/
-.pytest_cache/
-.mypy_cache/
 ```

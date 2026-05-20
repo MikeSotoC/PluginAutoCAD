@@ -120,6 +120,7 @@
     
     <!-- Infrastructure -->
     <Compile Include="src\Infrastructure\ErrorHandler.cs" />
+    <Compile Include="Infrastructure\Polyfills.cs" />
     
     <!-- UI (WinForms) -->
     <Compile Include="UI\MainForm.cs">
