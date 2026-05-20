@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net47</TargetFramework>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <LangVersion>10.0</LangVersion>
+    <LangVersion>7.3</LangVersion>
     
     <!-- Información del ensamblado -->
     <AssemblyName>CatastroUrbano</AssemblyName>
@@ -17,27 +17,63 @@
     <OutputType>Library</OutputType>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    
+    <!-- Compatible con Visual Studio 2019 -->
+    <VisualStudioVersion>16.0</VisualStudioVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- Referencias a AutoCAD .NET API -->
-    <!-- Ajustar las rutas según la instalación de AutoCAD o usar paquetes NuGet si están disponibles -->
+    <!-- Referencias a AutoCAD 2021 .NET API -->
+    <!-- Nota: Ajustar las rutas si AutoCAD está instalado en otra ubicación -->
     <Reference Include="AcMgd">
-      <HintPath>$(ProgramFiles)\Autodesk\AutoCAD 2023\AcMgd.dll</HintPath>
+      <HintPath>C:\Program Files\Autodesk\AutoCAD 2021\AcMgd.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="AcDbMgd">
-      <HintPath>$(ProgramFiles)\Autodesk\AutoCAD 2023\AcDbMgd.dll</HintPath>
+      <HintPath>C:\Program Files\Autodesk\AutoCAD 2021\AcDbMgd.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="AcCoreMgd">
-      <HintPath>$(ProgramFiles)\Autodesk\AutoCAD 2023\AcCoreMgd.dll</HintPath>
+      <HintPath>C:\Program Files\Autodesk\AutoCAD 2021\AcCoreMgd.dll</HintPath>
       <Private>false</Private>
     </Reference>
   </ItemGroup>
 
+  <ItemGroup Condition="'$(UseZwcad)' == 'true'">
+    <!-- Referencias a ZWCAD 2021 .NET API (alternativa) -->
+    <!-- Para usar ZWCAD, compilar con: dotnet build -p:UseZwcad=true -->
+    <!-- Descomentar y ajustar rutas según la instalación de ZWCAD -->
+    <!--
+    <Reference Include="ZwSoft.AutoCAD.Runtime">
+      <HintPath>C:\Program Files\ZWSOFT\ZWCAD 2021\ZwSoft.AutoCAD.Runtime.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="ZwSoft.AutoCAD.DatabaseServices">
+      <HintPath>C:\Program Files\ZWSOFT\ZWCAD 2021\ZwSoft.AutoCAD.DatabaseServices.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="ZwSoft.AutoCAD.ApplicationServices">
+      <HintPath>C:\Program Files\ZWSOFT\ZWCAD 2021\ZwSoft.AutoCAD.ApplicationServices.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Referencias estándar de .NET Framework 4.7 -->
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+
   <ItemGroup>
     <!-- Archivos fuente organizados por carpetas y namespaces -->
+    <!-- Properties (AssemblyInfo) -->
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    
     <!-- Commands -->
     <Compile Include="src\Commands\UCCommand.cs" />
     <Compile Include="src\Commands\ObrasCompCommand.cs" />
@@ -75,10 +111,18 @@
     
     <!-- Infrastructure -->
     <Compile Include="src\Infrastructure\ErrorHandler.cs" />
+    
+    <!-- UI (WinForms) -->
+    <Compile Include="UI\MainForm.cs" />
+    <Compile Include="UI\UIInitializer.cs" />
+    
+    <!-- Resources -->
+    <EmbeddedResource Include="UI\MainForm.resx" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <!-- Copiar el DLL a la carpeta de plugins de AutoCAD (opcional) -->
+    <!-- Ejemplo: copiar a ApplicationPlugins para carga automática -->
     <!-- <Exec Command="copy &quot;$(TargetPath)&quot; &quot;%APPDATA%\Autodesk\ApplicationPlugins\CatastroUrbano.bundle\Contents\&quot;" /> -->
   </Target>
 
