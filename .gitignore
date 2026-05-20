@@ -3,22 +3,53 @@
 *.obj
 *.exe
 *.dll
-*.pdb
-*.userprefs
-*.cache
-*.log
+*.so
+*.a
+*.out
+bin/
+obj/
+Debug/
+Release/
 
 # Dependencies
 packages/
-bin/
-obj/
+lib/
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
+*.env.*
 
 # Editors
-.vs/
-.ReSharper*/
-_UpgradeReport_Files/
+.vscode/
+.idea/
+*.swp
+*.swo
 
 # OS
-Thumbs.db
 .DS_Store
+Thumbs.db
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
+
+# Python specific
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.Python
+*.egg-info/
+.eggs/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
 ```
