@@ -1,5 +1,6 @@
 using System;
 using System.Windows.Forms;
+using System.Drawing;
 using Autodesk.AutoCAD.Runtime;
 using Autodesk.AutoCAD.ApplicationServices;
 
@@ -8,7 +9,7 @@ namespace CatastroUrbano.UI
     /// <summary>
     /// Formulario principal compacto estilo AutoCAD para gestión catastral
     /// </summary>
-    public class MainForm : Form
+    public partial class MainForm : Form
     {
         private TabControl mainTabControl;
         private TabPage tabDibujo;
@@ -58,46 +59,6 @@ namespace CatastroUrbano.UI
             this.MinimizeBox = false;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-        }
-
-        private void InitializeComponent()
-        {
-            // Configurar TabControl
-            mainTabControl = new TabControl();
-            mainTabControl.Dock = DockStyle.Fill;
-            mainTabControl.Appearance = TabAppearance.FlatButtons;
-            mainTabControl.ItemSize = new System.Drawing.Size(80, 25);
-            mainTabControl.SizeMode = TabSizeMode.Fixed;
-            
-            // Crear pestañas
-            tabDibujo = new TabPage("Dibujo");
-            tabAnalisis = new TabPage("Análisis");
-            tabClasificacion = new TabPage("Clasificación");
-            tabTablas = new TabPage("Tablas");
-            
-            mainTabControl.Controls.Add(tabDibujo);
-            mainTabControl.Controls.Add(tabAnalisis);
-            mainTabControl.Controls.Add(tabClasificacion);
-            mainTabControl.Controls.Add(tabTablas);
-            
-            // Inicializar componentes de cada pestaña
-            InitDibujoTab();
-            InitAnalisisTab();
-            InitClasificacionTab();
-            InitTablasTab();
-            
-            // Barra de estado
-            statusBar = new StatusStrip();
-            lblEstado = new ToolStripStatusLabel("Listo");
-            progressBar = new ToolStripProgressBar();
-            progressBar.Visible = false;
-            
-            statusBar.Items.Add(lblEstado);
-            statusBar.Items.Add(progressBar);
-            
-            // Agregar controles al formulario
-            this.Controls.Add(mainTabControl);
-            this.Controls.Add(statusBar);
         }
 
         private void InitDibujoTab()
