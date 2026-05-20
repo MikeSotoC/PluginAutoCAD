@@ -1,5 +1,18 @@
 ```
 # Build results
+bin/
+obj/
+out/
+
+# User-specific files
+.vs/
+.userprefs
+*.user
+*.userosscache
+*.suo
+*.userprefs
+
+# Build results
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
@@ -11,41 +24,34 @@ bld/
 [Bb]in/
 [Oo]bj/
 
-# Visual Studio files
-*.user
-*.userosscache
-*.suo
-*.csproj.user
-*.vbproj.user
-*.vcxproj.user
-*.sln.docstates
+# Visual Studio cache/options
+.vs/
+*.VC.db
+*.VC.VC.opendb
 
-# Visual Studio Code files
-.vscode/
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+ assemblies/
 
-# NuGet Packages
-*.nupkg
+# Code coverage
+coverage/
+*.coverage
+*.dotCover
+
+# Dependencies
+node_modules/
 packages/
 
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-desktop.ini
-
-# Log files
-*.log
-
-# Environment specific settings
+# Environment
 .env
 .env.local
 *.env.*
 
-# Temporary files
-*.tmp
-*.temp
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
 ```
