@@ -1,33 +1,67 @@
 ```
-# Build artifacts
-*.obj
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio files
+*.user
+*.userosscache
+*.suo
+*.csproj.user
+*.vbproj.user
+*.vcxproj.user
+*.sln.docstates
+
+# Visual Studio Code files
+.vscode/
+
+# IDE files
+.idea/
+*.swp
+*.swo
+
+# Compiled files
 *.exe
 *.dll
-*.pdb
-*.userprefs
-*.cache
-*.compiled
-*.log
+*.so
+*.dylib
+*.class
+*.o
+*.obj
+*.out
 
 # Dependencies
 packages/
-bin/
-obj/
+node_modules/
+vendor/
 
-# Environment specific
-.vs/
-.vshost.exe
-.user
-.local
+# Logs
+*.log
 
-# OS generated
+# Environment
+.env
+.env.local
+*.env.*
+
+# OS generated files
 .DS_Store
 Thumbs.db
 desktop.ini
 
-# IDE
-.vscode/
-.idea/
-*.suo
-*.userosscache
+# Coverage
+coverage/
+*.coverage
+.htmlcov/
+
+# Temporary files
+*.tmp
+*.temp
 ```
