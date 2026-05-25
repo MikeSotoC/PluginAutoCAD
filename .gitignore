@@ -1,109 +1,33 @@
-```csharp
-
-# Build Results
-[Dd]ebug/
-[Dd]ebugPublic/
-[Rr]elease/
-[Rr]eleases/
-x64/
-x86/
-build/
-bld/
-[Bb]in/
-[Oo]bj/
-
-# Visual Studio Code
-.vscode/
-
-# Visual Studio IDE
-*.user
-*.userosscache
-*.suo
-*.csproj.user
-*.vbproj.user
-*.fsproj.user
-
-# Compiled Files
+```
+# Build artifacts
+*.obj
 *.exe
 *.dll
-*.so
-*.dylib
-*.o
-*.obj
-*.a
-*.lib
 *.pdb
-*.ilk
-*.exp
-*.sys
-*.com
-*.bat
-*.sh
+*.userprefs
+*.cache
+*.compiled
+*.log
 
 # Dependencies
 packages/
-node_modules/
-vendor/
-target/
-.gradle/
-.nuget/
-.npm/
-.yarn/
+bin/
+obj/
 
-# Environment
-.env
-.env.local
-*.env.*
+# Environment specific
+.vs/
+.vshost.exe
+.user
+.local
 
-# Logs
-*.log
-*.out
-*.pid
-
-# OS generated files
+# OS generated
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
 desktop.ini
 
-# Python specific
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-env/
-venv/
-.venv/
-pip-log.txt
-pip-delete-this-directory.txt
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.log
-*.tmp
-*.swp
-*.swo
-
-# Java specific
-*.class
-*.jar
-*.war
-*.ear
-hs_err_pid*
-
-# C# specific
-[Ll]og/
-[Ll]ogs/
-TestResults/
-*.VisualState.xml
-*.gpState
+# IDE
+.vscode/
+.idea/
+*.suo
+*.userosscache
 ```
