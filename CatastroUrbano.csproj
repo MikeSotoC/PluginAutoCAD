@@ -65,7 +65,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -105,15 +104,7 @@
     <!-- Infrastructure -->
     <Compile Include="src\Infrastructure\ErrorHandler.cs" />
     <Compile Include="Infrastructure\Polyfills.cs" />
-    <!-- UI (WinForms - Legacy) -->
-    <Compile Include="UI\MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\UIInitializer.cs" />
-    <!-- UI (WPF - Nuevo) -->
+    <!-- UI (WPF) -->
     <Page Include="UI\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -124,9 +115,6 @@
   </ItemGroup>
   <!-- Recursos embebidos -->
   <ItemGroup>
-    <EmbeddedResource Include="UI\MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- Eventos post-build (opcional) -->
